@@ -1,0 +1,18 @@
+<script>
+$(function(){
+  getData();
+});
+
+function getData () {
+  var data = $.ajax({
+    url: 'https://data.cityofchicago.org/resource/v3hq-i8r8.json'
+  })
+  .done(function(data) {
+    $('#list').empty();
+    for (var i = 0; i < data.length; i++) {
+      $('#list').append((i + 1) + '. ' + data[i].title.toUpperCase() + ' by ' + data[i].author + '<br>');
+    }
+  });
+}
+
+</script>
