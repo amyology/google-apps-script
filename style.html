@@ -1,20 +1,46 @@
 <style>
+//font imports
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display');
 
+//variables
+:root {
+  --darkgray: #212121;
+  --lightblue: #03A9F4;
+  --teal: #009688;
+  --sans-serif: Roboto;
+  --serif: 'Playfair Display';
+}
+
 body {
-  color: #212121;
-  font-family: Roboto, sans-serif;
+  color: var(--darkgray);
+  font-family: var(--sans-serif), sans-serif;
+}
+
+a {
+  color: var(--lightblue);
+  text-decoration: none;
 }
 
 h1 {
-  color: teal;
-  font-family: 'Playfair Display', serif;
+  color: var(--teal);
+  font-family: var(--serif), serif;
   text-align: center;
 }
 
 .books {
-  width: 35%;
+  width: 40%;
   margin: 20px auto 50px;
+}
+
+.books input {
+  width: 50%;
+  padding: 5px;
+  border: 1px solid var(--darkgray);
+}
+
+.books input:focus {
+  outline: none;
+  border: 1px solid var(--lightblue);
 }
 </style>

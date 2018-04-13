@@ -1,18 +1,41 @@
 <script>
+
 $(function(){
-  getData();
+  init();
 });
 
-function getData () {
-  var data = $.ajax({
+function init() {
+  var books = [];
+
+  $.ajax({
     url: 'https://data.cityofchicago.org/resource/v3hq-i8r8.json'
-  })
-  .done(function(data) {
-    $('#list').empty();
+  }).done(function(data) {
     for (var i = 0; i < data.length; i++) {
-      $('#list').append((i + 1) + '. ' + data[i].title.toUpperCase() + ' by ' + data[i].author + '<br>');
+      books.push(data[i])
     }
-  });
+  })
+  
+  var app = new Vue({
+    el: '#app',
+    data: {
+      title: 'The vue version',
+      books: books,
+      search: ''
+    },
+    computed: {
+      filteredBooks(){
+        var searchTerm = this.search;
+        return this.books.filter(function(book){
+          return book.title.toLowerCase().includes(searchTerm.toLowerCase());
+        })
+      }
+    }
+  })
+
+  Vue.component('book-item', {
+    props: ['book'],
+    template: '<div>{{ book.rank }}. <a :href="book.catalog_record">{{ book.title.toUpperCase() }}</a> ({{ book.pub_year }}) by {{ book.author }}</div>'
+  })
 }
 
 </script>
